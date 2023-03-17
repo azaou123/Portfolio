@@ -52,3 +52,8 @@ window.addEventListener('DOMContentLoaded', event => {
     });
 
 });
+
+
+function privateLink(){
+    alert('This Is a Private Link');
+}
