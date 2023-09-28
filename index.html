@@ -31,10 +31,7 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item mx-0 mx-lg-1">
-                            <a class="nav-link py-3 px-0 px-lg-3 rounded" href="#about">About</a>
-                        </li>
-                        <li class="nav-item mx-0 mx-lg-1">
-                            <a class="nav-link py-3 px-0 px-lg-3 rounded" href="#education">Education</a>
+                            <a class="nav-link py-3 px-0 px-lg-3 rounded" href="#about">about</a>
                         </li>
                         <li class="nav-item mx-0 mx-lg-1">
                             <a class="nav-link py-3 px-0 px-lg-3 rounded" href="#projects">Projects</a>
@@ -49,127 +46,31 @@
                 </div>
             </div>
         </nav>
+</style>
 
-        <header class="masthead bg-primary text-white text-center ">
-          <div class="container d-flex align-items-center flex-column">
-            
-              <!-- Masthead Avatar Image -->
-              <img class="masthead-avatar rounded-circle" src="assets/img/portfolio/me-removebg-preview.png" alt="..." width="200px"/>
-              <!-- Coding Icons Container -->
-              <!-- <div class="coding-icons-container">
-                  <i class="coding-icon fab fa-js text-warning fs-1"></i>
-                  <i class="coding-icon fab fa-php text_secondary fs-1"></i>
-                  <i class="coding-icon fab fa-python text-success fs-1"></i>
-                  <i class="coding-icon fab fa-html5 text-danger fs-1"></i>
-                  <i class="coding-icon fab fa-css3 fs-1"></i>
-                  ... add more coding icons as needed ...
-              </div> -->
-              <!-- Other Header Content -->
-              <p class="masthead-heading mb-0">Badr AZAOU</p>
-              
-              <!-- Masthead Subheading -->
-              <p style="white-space: nowrap;">Junior Full-Stack Developer</p>
-              <!-- Social Media Icons -->
-              <div class="my-3 d-flex align-items-center">
-                <i onclick='window.location = "https://github.com/azaou123" ' class="fa-brands fa-github fs-3 mx-2 hovered"></i>
-                <i onclick='window.location = "https://www.linkedin.com/in/badr-azaou-ba2829211/" ' class="fa-brands fa-linkedin-in fs-3 mx-2 hovered"></i>
-                <i onclick='window.location = "https://www.facebook.com/profile.php?id=100029788651611" ' class="fa-brands fa-facebook-f fs-3 mx-2 hovered"></i>
-                <i onclick='window.location = "https://www.instagram.com/badrazaou/" ' class="fa-brands fa-instagram fs-3 mx-2 hovered"></i>
-              </div>
-              
-          </div>
-      </header>
-
-      <style>
-        /* Style the header and container */
-        .masthead {
-            position: relative;
-            background-color: #007bff; /* Header background color */
-            color: #fff; /* Header text color */
-            text-align: center;
-            padding: 100px 200px;
-        }
-
-        .container {
-            position: relative;
-            z-index: 1;
-        }
-
-        /* Style the header image */
-        .masthead-avatar {
-            width: 200px; /* Adjust the image size */
-            height: 200px;
-            margin-bottom: 20px;
-            border-radius: 50%;
-        }
-
-        /* Coding Icon Container */
-        .coding-icons-container {
-          width: 400px; /* Adjust the image size */
-            height: 400px;
-            position: absolute;
-            top: 70%;
-            left: 50%;
-
-            transform: translate(-50%, -50%);
-        }
-
-        /* Style the coding icons */
-        .coding-icon {
-            color: #fff; /* Icon color */
-            font-size: 24px; /* Adjust the size as needed */
-            width: 30px;
-            height: 30px;
-            margin: 0 10px; /* Adjust spacing */
-            border-radius: 50%;
-            background-color: #007bff; /* Background color for the icons */
-            position: absolute;
-            animation: fly-around 5s linear infinite; /* Adjust duration as needed */
-        }
-
-        /* Define the animation for the fly-around effect */
-        @keyframes fly-around {
-            0% {
-                transform: translate(-50%, -50%) rotate(0deg) translateY(100px) translateX(0);
-            }
-            100% {
-                transform: translate(-50%, -50%) rotate(360deg) translateY(100px) translateX(0);
-            }
-        }
-
-        /* Position the coding icons */
-        .coding-icon:nth-child(1) {
-            animation-delay: 0s;
-        }
-
-        .coding-icon:nth-child(2) {
-            animation-delay: 1s;
-        }
-
-        .coding-icon:nth-child(3) {
-            animation-delay: 2s;
-        }
-
-        .coding-icon:nth-child(4) {
-            animation-delay: 3s;
-        }
-
-        .coding-icon:nth-child(5) {
-            animation-delay: 4s;
-        }
-
-        @media (max-width: 600px) {
-        /* Remove the border for phone-sized screens */
-        .custom-border {
-          border: none;
-        }
-      }
-    </style>
-
-    
-
-    
-    
+<header class="masthead bg-primary text-white text-center">
+    <div class="container d-flex align-items-center flex-column">
+        <!-- Masthead Avatar Image-->
+        <img class="masthead-avatar mb-2 rounded-circle" style="width: 37%" src="assets/img/portfolio/me-removebg-preview.png" alt="..." width="700px" />
+        <!-- Button trigger modal -->
+        <!-- Masthead Heading-->
+        <h4 class="masthead-heading mb-0">AZAOU Badr</h4>
+        <!-- Icon Divider-->
+        <div class="divider-custom divider-light">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+            <div class="divider-custom-line"></div>
+        </div>
+        <!-- Masthead Subheading-->
+        <p class="masthead-subheading font-weight-light mb-0">Junior Full-Stack Developer</p>
+        <div class="my-3 header-icons">
+            <i onclick='window.location = "https://github.com/azaou123" ' class="fa-brands fa-github fs-3 mx-2 hovered"></i>
+            <i onclick='window.location = "https://www.linkedin.com/in/badr-azaou-ba2829211/" ' class="fa-brands fa-linkedin-in fs-3 mx-2 hovered"></i>
+            <i onclick='window.location = "https://www.facebook.com/profile.php?id=100029788651611" ' class="fa-brands fa-facebook-f fs-3 mx-2 hovered"></i>
+            <i onclick='window.location = "https://www.instagram.com/badrazaou/" ' class="fa-brands fa-instagram fs-3 mx-2 hovered"></i>
+        </div>
+    </div>
+</header>
 
 
 
@@ -183,7 +84,7 @@
 
 
         <!-- About Section  -->
-        <section class="page-section bg-secondary text-white mb-0 w-100 justify-content-center" id="about">
+        <section class="page-section bg-secondary text-white mb-0" id="about">
             <div class="container">
                 <h2 class="page-section-heading text-center text-uppercase text-white">About</h2>
                 <div class="divider-custom divider-light">
@@ -192,14 +93,15 @@
                     <div class="divider-custom-line"></div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-6 ms-auto ">
-                        <p class="lead mt-5 border-3 border-end border-light custom-border" style="text-indent:20px;">
-                          I am Badr AZAOU, born on December 22, 2002, in Marrakesh. My upbringing in Chichoua fueled my interest in improving and streamlining various aspects of life through innovative solutions. I pursued my education at High School and later embarked on a journey in Computer Science at the University Cadi Ayad (Faculty Of Sciences Semlalia).
+                    <div class="col-lg-5 ms-auto mt-5">
+                        <p class="lead" style="text-indent:20px;">
+                            Badr AZAOU, I was born on 22/12/2002 in Marrakesh. I grew up in Chichoua and has always been interested in Developping my actual situation and making life easier by getting things donr in better ways. I attended High School and later went on to study Computer science at University Cadi Ayad (Faculty Of Sciences Semlalia).
                         </p>
                     </div>
-                    <div class="col-lg-6 ms-auto">
-                        <p class="lead mt-5" style="text-indent:20px;">
-                          My academic path has equipped me with a solid foundation in programming languages such as Javascript, PHP, Java, and C++. Proficient in database management and web development, I am deeply passionate about continuous learning and staying abreast of the latest advancements and trends in the ever-evolving field of technology. </p>
+                    <div class="col-lg-5 ms-auto">
+                        <p class="lead" style="text-indent:20px;">
+                            As a computer science student, I have developed a strong foundation in programming languages like Javascript, PHP, Java and C++. I am skilled in database management and web development. I am passionate about learning and staying up-to-date with the latest technologies and trends in the field. Through personal coding projects and participation in coding programs, I have gained practical experience in developing software solutions to real-world problems.
+                        </p>
                     </div>
                 </div>
                 <div class="text-center mt-4">
@@ -228,6 +130,8 @@
 	    
 
  
+  
+   
 	<style>
       .timeline:before {
       content: "";
@@ -318,7 +222,17 @@
       }
       }
    </style>
-<div class="timeline-item w-100 mb-4 py-4 text-dark lc-block">
+   <!-- Portfolio Section Heading-->
+   <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0 mt-4">Academic</h2>
+   <!-- Icon Divider-->
+   <div class="divider-custom">
+       <div class="divider-custom-line"></div>
+       <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+       <div class="divider-custom-line"></div>
+   </div>
+   <div class="container py-5 timeline position-relative">
+	<div class="timeline-item w-100 mb-4 py-4 text-dark lc-block">
+    
 		<div class="timeline-img"></div>
 		<div class="timeline-content">
 			<p editable="inline" class="lead"><i class="fa-solid fa-calendar-days text-info mx-3"></i>2023-2025</p>
@@ -328,20 +242,18 @@
 				<p> <i class="fa-solid fa-location-dot text-info mx-3"></i> Faculty Of Sciences Marrakesh.</p>
 			</div>
 		</div>
-</div>
-<div class="timeline-item w-100 mb-4 py-4 text-dark lc-block"></div>
-    <div class="timeline-img"></div>
+	</div>
+	<div class="timeline-item w-100 mb-4 py-4 text-dark lc-block">
+		<div class="timeline-img"></div>
 		<div class="timeline-content">
-			<p editable="inline" class="lead"><i class="fa-solid fa-calendar-days text-info mx-3"></i>2020-2023</p>
-			<h2 editable="inline" class="fw-bold rfs-12">Bachelor's degree in Mathematics and Computer Science</h2>
+			<p editable="inline" class="lead">2020-2023</p>
+			<h2 editable="inline" class="fw-bold rfs-12"> Bachelor's degree in Mathematics and Computer Science</h2>
 			<div editable="rich">
 				<p>Undergraduate academic program that combines the study of mathematical principles and computer science concepts.</p>
-				<p> <i class="fa-solid fa-location-dot text-info mx-3"></i> Faculty Of Sciences Marrakesh.</p>
 			</div>
 		</div>
+	</div>
 </div>
-
-
  
  
   
@@ -783,7 +695,7 @@
                                             <b class="fs-5">Description</b> <br>
                                             This project is a presentation of a project organized by IT Club FSSM where u can find all the sessions <br> It is created Using Bootstrap 5. <br>
                                             <b class="fs-5">Links : </b> 
-                                            <a href="http://github.com/azaoffffu123" target="_blank"><i class="fa-solid fa-globe text-info fs-5 fw-bold mx-1 hovered"></i></a> 
+                                            <a href="https://itclubfssm.github.io/xchange/" target="_blank"><i class="fa-solid fa-globe text-info fs-5 fw-bold mx-1 hovered"></i></a> 
                                             <i class="fa-brands fa-github text-dark fs-5 fw-bold mx-1 hovered"></i>
                                         </p>
                                     </div>
