@@ -157,6 +157,13 @@
         .coding-icon:nth-child(5) {
             animation-delay: 4s;
         }
+
+        @media (max-width: 600px) {
+        /* Remove the border for phone-sized screens */
+        .custom-border {
+          border: none;
+        }
+      }
     </style>
 
     
@@ -176,7 +183,7 @@
 
 
         <!-- About Section  -->
-        <section class="page-section bg-secondary text-white mb-0" id="about">
+        <section class="page-section bg-secondary text-white mb-0 w-100 justify-content-center" id="about">
             <div class="container">
                 <h2 class="page-section-heading text-center text-uppercase text-white">About</h2>
                 <div class="divider-custom divider-light">
@@ -221,8 +228,6 @@
 	    
 
  
-  
-    <div class="container py-5 timeline position-relative" id="education">
 	<style>
       .timeline:before {
       content: "";
