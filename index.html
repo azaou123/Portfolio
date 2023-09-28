@@ -47,28 +47,54 @@
             </div>
         </nav>
         <!-- Masthead-->
-        <header class="masthead bg-primary text-white text-center">
-            <div class="container d-flex align-items-center flex-column">
-                <!-- Masthead Avatar Image-->
-                <img class="masthead-avatar mb-2 rounded-circle" style="width:37%" src="assets/img/portfolio/me-removebg-preview.png" alt="..." width="700px"/><!-- Button trigger modal -->
-                <!-- Masthead Heading-->
-                <h4 class="masthead-heading mb-0">Azaou 123</h4>
-                <!-- Icon Divider-->
-                <div class="divider-custom divider-light">
-                    <div class="divider-custom-line"></div>
-                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-                    <div class="divider-custom-line"></div>
-                </div>
-                <!-- Masthead Subheading-->
-                <p class="masthead-subheading font-weight-light mb-0">Junior Full-Stack Developer</p>
-                <div class="my-3">
-                    <i onclick='window.location = "https://github.com/azaou123" ' class="fa-brands fa-github fs-3 mx-2 hovered"></i>
-                    <i onclick='window.location = "https://www.linkedin.com/in/badr-azaou-ba2829211/" ' class="fa-brands fa-linkedin-in fs-3 mx-2 hovered"></i>
-                    <i onclick='window.location = "https://www.facebook.com/profile.php?id=100029788651611" ' class="fa-brands fa-facebook-f fs-3 mx-2 hovered"></i>
-                    <i onclick='window.location = "https://www.instagram.com/badrazaou/" ' class="fa-brands fa-instagram fs-3 mx-2 hovered"></i>
-                </div>
-            </div>
-        </header>
+       <style>
+    @keyframes fly-around {
+        0% {
+            transform: translate(0, 0);
+        }
+        25% {
+            transform: translate(20px, -20px);
+        }
+        50% {
+            transform: translate(40px, 0);
+        }
+        75% {
+            transform: translate(20px, 20px);
+        }
+        100% {
+            transform: translate(0, 0);
+        }
+    }
+
+    .header-icons {
+        animation: fly-around 5s infinite;
+    }
+</style>
+
+<header class="masthead bg-primary text-white text-center">
+    <div class="container d-flex align-items-center flex-column">
+        <!-- Masthead Avatar Image-->
+        <img class="masthead-avatar mb-2 rounded-circle" style="width: 37%" src="assets/img/portfolio/me-removebg-preview.png" alt="..." width="700px" />
+        <!-- Button trigger modal -->
+        <!-- Masthead Heading-->
+        <h4 class="masthead-heading mb-0">Azaou 123</h4>
+        <!-- Icon Divider-->
+        <div class="divider-custom divider-light">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+            <div class="divider-custom-line"></div>
+        </div>
+        <!-- Masthead Subheading-->
+        <p class="masthead-subheading font-weight-light mb-0">Junior Full-Stack Developer</p>
+        <div class="my-3 header-icons">
+            <i onclick='window.location = "https://github.com/azaou123" ' class="fa-brands fa-github fs-3 mx-2 hovered"></i>
+            <i onclick='window.location = "https://www.linkedin.com/in/badr-azaou-ba2829211/" ' class="fa-brands fa-linkedin-in fs-3 mx-2 hovered"></i>
+            <i onclick='window.location = "https://www.facebook.com/profile.php?id=100029788651611" ' class="fa-brands fa-facebook-f fs-3 mx-2 hovered"></i>
+            <i onclick='window.location = "https://www.instagram.com/badrazaou/" ' class="fa-brands fa-instagram fs-3 mx-2 hovered"></i>
+        </div>
+    </div>
+</header>
+
 
 
 
