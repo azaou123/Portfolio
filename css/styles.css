@@ -11566,6 +11566,14 @@ html {
   margin-left: 10%;
   height: 100%;
 }
+#btnP8{
+  background-image: url(../assets/img/project8/itclubfssm.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 80%;
+  margin-left: 10%;
+  height: 100%;
+}
 #plus{
   padding-top: 25%;
   padding-bottom: 25%;
