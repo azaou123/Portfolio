@@ -4,9 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BadrOS v2.5 | Digital Universe</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>BadrAZAOUOS v1.0 | Digital Universe</title>
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
@@ -18,121 +16,139 @@
 
 <body>
     <!-- Main Container -->
-    <div class="container-fluid" id="main-container">
+    <div id="main-container">
         <!-- Boot Screen -->
         <div id="boot-screen" class="screen active">
-            <div class="terminal">
-                <div class="terminal-header">
-                    <div class="terminal-title">BadrOS Terminal</div>
-                    <div class="terminal-controls">
-                        <div class="control close"></div>
-                        <div class="control minimize"></div>
-                        <div class="control maximize"></div>
+            <div class="screen-content">
+                <div class="terminal">
+                    <div class="terminal-header">
+                        <div class="terminal-title">BadrOS Terminal</div>
+                        <div class="terminal-controls">
+                            <div class="control close"></div>
+                            <div class="control minimize"></div>
+                            <div class="control maximize"></div>
+                        </div>
                     </div>
-                </div>
-                <div class="terminal-body">
-                    <!-- Boot messages will be inserted here by JavaScript -->
+                    <div class="terminal-body">
+                        <!-- Boot messages will be inserted here by JavaScript -->
+                    </div>
                 </div>
             </div>
         </div>
 
         <!-- Dashboard Screen -->
         <div id="dashboard-screen" class="screen">
-            <div class="dashboard-header">
-                <div class="system-title">BadrOS v2.5</div>
-                <div class="system-status">
-                    <div class="status-indicator"></div>
-                    <div class="status-text">System Online</div>
-                </div>
-            </div>
-
-            <div class="modules-grid">
-                <div class="module-card clickable" data-module="about">
-                    <div class="module-icon">
-                        <i class="fas fa-user-astronaut"></i>
+            <div class="screen-content">
+                <div class="dashboard-header">
+                    <div class="system-title">BadrOS v2.5</div>
+                    <div class="system-status">
+                        <div class="status-indicator"></div>
+                        <div class="status-text">System Online</div>
                     </div>
-                    <div class="module-title">Who Am I?</div>
-                    <div class="module-description">Decoded AI file with personal data</div>
                 </div>
 
-                <div class="module-card clickable" data-module="projects">
-                    <div class="module-icon">
-                        <i class="fas fa-project-diagram"></i>
+                <div class="modules-grid">
+                    <div class="module-card" data-module="about">
+                        <div class="module-icon">
+                            <i class="fas fa-user-astronaut"></i>
+                        </div>
+                        <div class="module-title">Who Am I?</div>
+                        <div class="module-description">Decoded AI file with personal data</div>
                     </div>
-                    <div class="module-title">Projects</div>
-                    <div class="module-description">Holographic project previews</div>
-                </div>
 
-                <div class="module-card clickable" data-module="skills">
-                    <div class="module-icon">
-                        <i class="fas fa-code-branch"></i>
+                    <div class="module-card" data-module="projects">
+                        <div class="module-icon">
+                            <i class="fas fa-project-diagram"></i>
+                        </div>
+                        <div class="module-title">Projects</div>
+                        <div class="module-description">Holographic project previews</div>
                     </div>
-                    <div class="module-title">Skill Tree</div>
-                    <div class="module-description">Video game-style XP map</div>
-                </div>
 
-                <div class="module-card clickable" data-module="funzone">
-                    <div class="module-icon">
-                        <i class="fas fa-gamepad"></i>
+                    <div class="module-card" data-module="skills">
+                        <div class="module-icon">
+                            <i class="fas fa-code-branch"></i>
+                        </div>
+                        <div class="module-title">Skill Tree</div>
+                        <div class="module-description">Video game-style XP map</div>
                     </div>
-                    <div class="module-title">Fun Zone</div>
-                    <div class="module-description">Bug jokes & Easter eggs</div>
-                </div>
 
-                <div class="module-card clickable" data-module="contact">
-                    <div class="module-icon">
-                        <i class="fas fa-terminal"></i>
+                    <div class="module-card" data-module="funzone">
+                        <div class="module-icon">
+                            <i class="fas fa-gamepad"></i>
+                        </div>
+                        <div class="module-title">Fun Zone</div>
+                        <div class="module-description">Bug jokes & Easter eggs</div>
                     </div>
-                    <div class="module-title">Contact</div>
-                    <div class="module-description">Interactive holographic form</div>
-                </div>
-            </div>
 
-            <div class="command-line">
-                <span class="command-prompt">badr@digital-universe:~$</span>
-                <input type="text" class="command-input" placeholder="Type 'help' for commands">
+                    <div class="module-card" data-module="contact">
+                        <div class="module-icon">
+                            <i class="fas fa-terminal"></i>
+                        </div>
+                        <div class="module-title">Contact</div>
+                        <div class="module-description">Interactive holographic form</div>
+                    </div>
+                </div>
+
+                <div class="command-line">
+                    <span class="command-prompt">badr@digital-universe:~$</span>
+                    <input type="text" class="command-input" placeholder="Type 'help' for commands" id="command-input">
+                </div>
             </div>
         </div>
 
         <!-- About Module -->
         <div id="about-module" class="module-screen">
-            <div class="module-header">
-                <div class="module-title-large">Who Am I?</div>
-                <div class="close-module">
-                    <i class="fas fa-times"></i>
+            <div class="screen-content">
+                <div class="module-header">
+                    <div class="module-title-large">Who Am I?</div>
+                    <div class="close-module">
+                        <i class="fas fa-times"></i>
+                    </div>
                 </div>
-            </div>
 
-            <div class="ai-file">
-                <div class="file-header">
-                    <div class="file-title">badr_profile.ai</div>
-                    <div class="file-status">DECODED</div>
-                </div>
-                <div class="file-content">
-                    <div class="file-line">
-                        <span class="file-label">IDENTITY:</span> Badr, Moroccan Full-Stack Developer
+                <div class="ai-file">
+                    <div class="file-header">
+                        <div class="file-title">badr_profile.ai</div>
+                        <div class="file-status">DECODED</div>
                     </div>
-                    <div class="file-line">
-                        <span class="file-label">AGE:</span> Early 20s
-                    </div>
-                    <div class="file-line">
-                        <span class="file-label">LOCATION:</span> Digital Universe
-                    </div>
-                    <div class="file-line">
-                        <span class="file-label">SPECIALIZATION:</span> Web Technologies, AI Integration, Creative
-                        Coding
-                    </div>
-                    <div class="file-line">
-                        <span class="file-label">PHILOSOPHY:</span> Discipline with a dash of humor
-                    </div>
-                    <div class="file-line">
-                        <span class="file-label">MISSION:</span> Building the future, one line of code at a time
-                    </div>
-                    <div class="file-line">
-                        <span class="file-label">ENERGY:</span> Futuristic tech vibes with Moroccan soul
-                    </div>
-                    <div class="file-line">
-                        <span class="file-label">STATUS:</span> Currently coding the next big thing
+                    <div class="file-content">
+                        <div class="file-line">
+                            <span class="file-label">IDENTITY:</span> Badr, Moroccan Full-Stack Developer
+                        </div>
+                        <div class="file-line">
+                            <span class="file-label">AGE:</span> Early 20s
+                        </div>
+                        <div class="file-line">
+                            <span class="file-label">LOCATION:</span> Digital Universe
+                        </div>
+                        <div class="file-line">
+                            <span class="file-label">SPECIALIZATION:</span> Web Technologies, AI Integration, Creative
+                            Coding
+                        </div>
+                        <div class="file-line">
+                            <span class="file-label">PHILOSOPHY:</span> Discipline with a dash of humor
+                        </div>
+                        <div class="file-line">
+                            <span class="file-label">MISSION:</span> Building the future, one line of code at a time
+                        </div>
+                        <div class="file-line">
+                            <span class="file-label">ENERGY:</span> Futuristic tech vibes with Moroccan soul
+                        </div>
+                        <div class="file-line">
+                            <span class="file-label">STATUS:</span> Currently coding the next big thing
+                        </div>
+                        <div class="file-line">
+                            <span class="file-label">TECH STACK:</span> JavaScript, Python, React, Node.js, MongoDB
+                        </div>
+                        <div class="file-line">
+                            <span class="file-label">PASSION:</span> Creating immersive digital experiences
+                        </div>
+                        <div class="file-line">
+                            <span class="file-label">GOAL:</span> Push the boundaries of web development
+                        </div>
+                        <div class="file-line">
+                            <span class="file-label">MOTTO:</span> Code with purpose, build with passion
+                        </div>
                     </div>
                 </div>
             </div>
@@ -140,89 +156,137 @@
 
         <!-- Projects Module -->
         <div id="projects-module" class="module-screen">
-            <div class="module-header">
-                <div class="module-title-large">Projects</div>
-                <div class="close-module">
-                    <i class="fas fa-times"></i>
-                </div>
-            </div>
-
-            <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-preview">
-                        <div class="project-icon">
-                            <i class="fas fa-tv"></i>
-                        </div>
-                    </div>
-                    <div class="project-info">
-                        <div class="project-title">TVA System</div>
-                        <div class="project-description">
-                            A time variance authority system for managing multidimensional timelines with precision and
-                            style.
-                        </div>
-                        <div class="project-tech">
-                            <span class="tech-tag">React</span>
-                            <span class="tech-tag">Node.js</span>
-                            <span class="tech-tag">MongoDB</span>
-                        </div>
+            <div class="screen-content">
+                <div class="module-header">
+                    <div class="module-title-large">Projects</div>
+                    <div class="close-module">
+                        <i class="fas fa-times"></i>
                     </div>
                 </div>
 
-                <div class="project-card">
-                    <div class="project-preview">
-                        <div class="project-icon">
-                            <i class="fas fa-file-alt"></i>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <div class="project-preview">
+                            <div class="project-icon">
+                                <i class="fas fa-tv"></i>
+                            </div>
+                        </div>
+                        <div class="project-info">
+                            <div class="project-title">TVA System</div>
+                            <div class="project-description">
+                                A time variance authority system for managing multidimensional timelines with precision
+                                and
+                                style.
+                            </div>
+                            <div class="project-tech">
+                                <span class="tech-tag">React</span>
+                                <span class="tech-tag">Node.js</span>
+                                <span class="tech-tag">MongoDB</span>
+                                <span class="tech-tag">WebSocket</span>
+                            </div>
                         </div>
                     </div>
-                    <div class="project-info">
-                        <div class="project-title">Flask OCR</div>
-                        <div class="project-description">
-                            Optical character recognition system built with Flask for digitizing documents with high
-                            accuracy.
-                        </div>
-                        <div class="project-tech">
-                            <span class="tech-tag">Python</span>
-                            <span class="tech-tag">Flask</span>
-                            <span class="tech-tag">OpenCV</span>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="project-card">
-                    <div class="project-preview">
-                        <div class="project-icon">
-                            <i class="fas fa-users"></i>
+                    <div class="project-card">
+                        <div class="project-preview">
+                            <div class="project-icon">
+                                <i class="fas fa-file-alt"></i>
+                            </div>
+                        </div>
+                        <div class="project-info">
+                            <div class="project-title">Flask OCR</div>
+                            <div class="project-description">
+                                Optical character recognition system built with Flask for digitizing documents with high
+                                accuracy.
+                            </div>
+                            <div class="project-tech">
+                                <span class="tech-tag">Python</span>
+                                <span class="tech-tag">Flask</span>
+                                <span class="tech-tag">OpenCV</span>
+                                <span class="tech-tag">Tesseract</span>
+                            </div>
                         </div>
                     </div>
-                    <div class="project-info">
-                        <div class="project-title">Club Management</div>
-                        <div class="project-description">
-                            Comprehensive system for managing club members, events, and finances with intuitive
-                            dashboard.
-                        </div>
-                        <div class="project-tech">
-                            <span class="tech-tag">Vue.js</span>
-                            <span class="tech-tag">Express</span>
-                            <span class="tech-tag">MySQL</span>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="project-card">
-                    <div class="project-preview">
-                        <div class="project-icon">
-                            <i class="fas fa-robot"></i>
+                    <div class="project-card">
+                        <div class="project-preview">
+                            <div class="project-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                        </div>
+                        <div class="project-info">
+                            <div class="project-title">Club Management</div>
+                            <div class="project-description">
+                                Comprehensive system for managing club members, events, and finances with intuitive
+                                dashboard.
+                            </div>
+                            <div class="project-tech">
+                                <span class="tech-tag">Vue.js</span>
+                                <span class="tech-tag">Express</span>
+                                <span class="tech-tag">MySQL</span>
+                                <span class="tech-tag">JWT</span>
+                            </div>
                         </div>
                     </div>
-                    <div class="project-info">
-                        <div class="project-title">AI Assistant</div>
-                        <div class="project-description">
-                            Personal AI assistant that learns from interactions and helps with daily tasks and coding.
+
+                    <div class="project-card">
+                        <div class="project-preview">
+                            <div class="project-icon">
+                                <i class="fas fa-robot"></i>
+                            </div>
                         </div>
-                        <div class="project-tech">
-                            <span class="tech-tag">Python</span>
-                            <span class="tech-tag">TensorFlow</span>
-                            <span class="tech-tag">NLP</span>
+                        <div class="project-info">
+                            <div class="project-title">AI Assistant</div>
+                            <div class="project-description">
+                                Personal AI assistant that learns from interactions and helps with daily tasks and
+                                coding.
+                            </div>
+                            <div class="project-tech">
+                                <span class="tech-tag">Python</span>
+                                <span class="tech-tag">TensorFlow</span>
+                                <span class="tech-tag">NLP</span>
+                                <span class="tech-tag">Speech Recognition</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-preview">
+                            <div class="project-icon">
+                                <i class="fas fa-shopping-cart"></i>
+                            </div>
+                        </div>
+                        <div class="project-info">
+                            <div class="project-title">E-Commerce Platform</div>
+                            <div class="project-description">
+                                Full-stack e-commerce solution with payment integration and admin dashboard.
+                            </div>
+                            <div class="project-tech">
+                                <span class="tech-tag">React</span>
+                                <span class="tech-tag">Node.js</span>
+                                <span class="tech-tag">PostgreSQL</span>
+                                <span class="tech-tag">Stripe API</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-preview">
+                            <div class="project-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                        </div>
+                        <div class="project-info">
+                            <div class="project-title">Data Analytics Dashboard</div>
+                            <div class="project-description">
+                                Real-time data visualization dashboard for business intelligence and analytics.
+                            </div>
+                            <div class="project-tech">
+                                <span class="tech-tag">D3.js</span>
+                                <span class="tech-tag">Express</span>
+                                <span class="tech-tag">MongoDB</span>
+                                <span class="tech-tag">WebSocket</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -231,171 +295,219 @@
 
         <!-- Skills Module -->
         <div id="skills-module" class="module-screen">
-            <div class="module-header">
-                <div class="module-title-large">Skill Tree</div>
-                <div class="close-module">
-                    <i class="fas fa-times"></i>
-                </div>
-            </div>
-
-            <div class="skill-tree">
-                <div class="skill-node">
-                    <div class="skill-icon">
-                        <i class="fab fa-js-square"></i>
+            <div class="screen-content">
+                <div class="module-header">
+                    <div class="module-title-large">Skill Tree</div>
+                    <div class="close-module">
+                        <i class="fas fa-times"></i>
                     </div>
-                    <div class="skill-name">JavaScript</div>
-                    <div class="skill-level">EXPERT</div>
                 </div>
 
-                <div class="skill-node">
-                    <div class="skill-icon">
-                        <i class="fab fa-python"></i>
+                <div class="skill-tree">
+                    <div class="skill-node">
+                        <div class="skill-icon">
+                            <i class="fab fa-js-square"></i>
+                        </div>
+                        <div class="skill-name">JavaScript</div>
+                        <div class="skill-level">EXPERT</div>
                     </div>
-                    <div class="skill-name">Python</div>
-                    <div class="skill-level">ADVANCED</div>
-                </div>
 
-                <div class="skill-node">
-                    <div class="skill-icon">
-                        <i class="fab fa-react"></i>
+                    <div class="skill-node">
+                        <div class="skill-icon">
+                            <i class="fab fa-python"></i>
+                        </div>
+                        <div class="skill-name">Python</div>
+                        <div class="skill-level">ADVANCED</div>
                     </div>
-                    <div class="skill-name">React</div>
-                    <div class="skill-level">EXPERT</div>
-                </div>
 
-                <div class="skill-node">
-                    <div class="skill-icon">
-                        <i class="fas fa-database"></i>
+                    <div class="skill-node">
+                        <div class="skill-icon">
+                            <i class="fab fa-react"></i>
+                        </div>
+                        <div class="skill-name">React</div>
+                        <div class="skill-level">EXPERT</div>
                     </div>
-                    <div class="skill-name">Database</div>
-                    <div class="skill-level">ADVANCED</div>
-                </div>
 
-                <div class="skill-node">
-                    <div class="skill-icon">
-                        <i class="fas fa-server"></i>
+                    <div class="skill-node">
+                        <div class="skill-icon">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <div class="skill-name">Database</div>
+                        <div class="skill-level">ADVANCED</div>
                     </div>
-                    <div class="skill-name">Backend</div>
-                    <div class="skill-level">ADVANCED</div>
-                </div>
 
-                <div class="skill-node">
-                    <div class="skill-icon">
-                        <i class="fas fa-mobile-alt"></i>
+                    <div class="skill-node">
+                        <div class="skill-icon">
+                            <i class="fas fa-server"></i>
+                        </div>
+                        <div class="skill-name">Backend</div>
+                        <div class="skill-level">ADVANCED</div>
                     </div>
-                    <div class="skill-name">Responsive</div>
-                    <div class="skill-level">EXPERT</div>
+
+                    <div class="skill-node">
+                        <div class="skill-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <div class="skill-name">Responsive</div>
+                        <div class="skill-level">EXPERT</div>
+                    </div>
+
+                    <div class="skill-node">
+                        <div class="skill-icon">
+                            <i class="fab fa-node-js"></i>
+                        </div>
+                        <div class="skill-name">Node.js</div>
+                        <div class="skill-level">ADVANCED</div>
+                    </div>
+
+                    <div class="skill-node">
+                        <div class="skill-icon">
+                            <i class="fas fa-cloud"></i>
+                        </div>
+                        <div class="skill-name">Cloud</div>
+                        <div class="skill-level">INTERMEDIATE</div>
+                    </div>
+
+                    <div class="skill-node">
+                        <div class="skill-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <div class="skill-name">AI/ML</div>
+                        <div class="skill-level">INTERMEDIATE</div>
+                    </div>
                 </div>
             </div>
         </div>
 
         <!-- Fun Zone Module -->
         <div id="funzone-module" class="module-screen">
-            <div class="module-header">
-                <div class="module-title-large">Fun Zone</div>
-                <div class="close-module">
-                    <i class="fas fa-times"></i>
-                </div>
-            </div>
-
-            <div class="jokes-container">
-                <div class="joke-card">
-                    <div class="joke-text">
-                        Why do programmers prefer dark mode?
-                    </div>
-                    <div class="joke-punchline">
-                        Because light attracts bugs!
+            <div class="screen-content">
+                <div class="module-header">
+                    <div class="module-title-large">Fun Zone</div>
+                    <div class="close-module">
+                        <i class="fas fa-times"></i>
                     </div>
                 </div>
 
-                <div class="joke-card">
-                    <div class="joke-text">
-                        How many programmers does it take to change a light bulb?
+                <div class="jokes-container">
+                    <div class="joke-card">
+                        <div class="joke-text">
+                            Why do programmers prefer dark mode?
+                        </div>
+                        <div class="joke-punchline">
+                            Because light attracts bugs!
+                        </div>
                     </div>
-                    <div class="joke-punchline">
-                        None, that's a hardware problem.
+
+                    <div class="joke-card">
+                        <div class="joke-text">
+                            How many programmers does it take to change a light bulb?
+                        </div>
+                        <div class="joke-punchline">
+                            None, that's a hardware problem.
+                        </div>
+                    </div>
+
+                    <div class="joke-card">
+                        <div class="joke-text">
+                            Why do Java developers wear glasses?
+                        </div>
+                        <div class="joke-punchline">
+                            Because they can't C#.
+                        </div>
+                    </div>
+
+                    <div class="joke-card">
+                        <div class="joke-text">
+                            There are only 10 types of people in the world:
+                        </div>
+                        <div class="joke-punchline">
+                            Those who understand binary and those who don't.
+                        </div>
+                    </div>
+
+                    <div class="joke-card">
+                        <div class="joke-text">
+                            Why was the JavaScript developer sad?
+                        </div>
+                        <div class="joke-punchline">
+                            Because he didn't know how to express his feelings.
+                        </div>
+                    </div>
+
+                    <div class="joke-card">
+                        <div class="joke-text">
+                            What's a programmer's favorite hangout place?
+                        </div>
+                        <div class="joke-punchline">
+                            The Foo Bar.
+                        </div>
+                    </div>
+
+                    <div class="joke-card">
+                        <div class="joke-text">
+                            Why do programmers always mix up Halloween and Christmas?
+                        </div>
+                        <div class="joke-punchline">
+                            Because Oct 31 == Dec 25.
+                        </div>
+                    </div>
+
+                    <div class="joke-card">
+                        <div class="joke-text">
+                            How do you comfort a JavaScript bug?
+                        </div>
+                        <div class="joke-punchline">
+                            You console it!
+                        </div>
                     </div>
                 </div>
 
-                <div class="joke-card">
-                    <div class="joke-text">
-                        Why do Java developers wear glasses?
-                    </div>
-                    <div class="joke-punchline">
-                        Because they can't C#.
-                    </div>
+                <div class="easter-egg">
+                    <button class="egg-trigger">Click me 5 times for a surprise!</button>
                 </div>
-
-                <div class="joke-card">
-                    <div class="joke-text">
-                        There are only 10 types of people in the world:
-                    </div>
-                    <div class="joke-punchline">
-                        Those who understand binary and those who don't.
-                    </div>
-                </div>
-
-                <div class="joke-card">
-                    <div class="joke-text">
-                        Why was the JavaScript developer sad?
-                    </div>
-                    <div class="joke-punchline">
-                        Because he didn't know how to express his feelings.
-                    </div>
-                </div>
-
-                <div class="joke-card">
-                    <div class="joke-text">
-                        What's a programmer's favorite hangout place?
-                    </div>
-                    <div class="joke-punchline">
-                        The Foo Bar.
-                    </div>
-                </div>
-            </div>
-
-            <div class="easter-egg">
-                <button class="egg-trigger">Click me 5 times for a surprise!</button>
             </div>
         </div>
 
         <!-- Contact Module -->
         <div id="contact-module" class="module-screen">
-            <div class="module-header">
-                <div class="module-title-large">Contact</div>
-                <div class="close-module">
-                    <i class="fas fa-times"></i>
-                </div>
-            </div>
-
-            <div class="contact-form">
-                <div class="form-group">
-                    <label class="form-label" for="name">Your Name</label>
-                    <input type="text" class="form-input" id="name" placeholder="Enter your name">
+            <div class="screen-content">
+                <div class="module-header">
+                    <div class="module-title-large">Contact</div>
+                    <div class="close-module">
+                        <i class="fas fa-times"></i>
+                    </div>
                 </div>
 
-                <div class="form-group">
-                    <label class="form-label" for="email">Your Email</label>
-                    <input type="email" class="form-input" id="email" placeholder="Enter your email">
-                </div>
+                <div class="contact-form">
+                    <div class="form-group">
+                        <label class="form-label" for="name">Your Name</label>
+                        <input type="text" class="form-input" id="name" placeholder="Enter your name">
+                    </div>
 
-                <div class="form-group">
-                    <label class="form-label" for="subject">Subject</label>
-                    <input type="text" class="form-input" id="subject" placeholder="What's this about?">
-                </div>
+                    <div class="form-group">
+                        <label class="form-label" for="email">Your Email</label>
+                        <input type="email" class="form-input" id="email" placeholder="Enter your email">
+                    </div>
 
-                <div class="form-group">
-                    <label class="form-label" for="message">Message</label>
-                    <textarea class="form-textarea" id="message" placeholder="Type your message here..."></textarea>
-                </div>
+                    <div class="form-group">
+                        <label class="form-label" for="subject">Subject</label>
+                        <input type="text" class="form-input" id="subject" placeholder="What's this about?">
+                    </div>
 
-                <button class="submit-btn">Send Transmission</button>
+                    <div class="form-group">
+                        <label class="form-label" for="message">Message</label>
+                        <textarea class="form-textarea" id="message" placeholder="Type your message here..."
+                            rows="6"></textarea>
+                    </div>
+
+                    <button class="submit-btn">Send Transmission</button>
+                    <div id="form-response"></div>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Custom JS -->
     <script src="script.js"></script>
 </body>

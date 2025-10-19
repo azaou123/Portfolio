@@ -1,22 +1,78 @@
-// script.js
+// script.js - Fixed Version
+let easterEggCount = 0;
+
 document.addEventListener('DOMContentLoaded', function() {
-    // Boot sequence
-    setTimeout(function() {
-        startBootSequence();
-    }, 500);
-    
-    // Initialize modules
-    initModules();
-    
-    // Initialize command line
-    initCommandLine();
+    console.log('🚀 BadrOS v2.5 Initializing...');
+    startBootSequence();
+    initEventListeners();
 });
+
+function initEventListeners() {
+    // Module cards click events
+    const moduleCards = document.querySelectorAll('.module-card');
+    moduleCards.forEach(card => {
+        card.addEventListener('click', function() {
+            const module = this.getAttribute('data-module');
+            if (module) {
+                openModule(module);
+            }
+        });
+    });
+
+    // Close module buttons
+    const closeButtons = document.querySelectorAll('.close-module');
+    closeButtons.forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            closeAllModules();
+        });
+    });
+
+    // Joke cards
+    const jokeCards = document.querySelectorAll('.joke-card');
+    jokeCards.forEach(card => {
+        card.addEventListener('click', function() {
+            this.classList.toggle('joke-revealed');
+        });
+    });
+
+    // Easter egg button
+    const eggButton = document.querySelector('.egg-trigger');
+    if (eggButton) {
+        eggButton.addEventListener('click', triggerEasterEgg);
+    }
+
+    // Submit button
+    const submitBtn = document.querySelector('.submit-btn');
+    if (submitBtn) {
+        submitBtn.addEventListener('click', submitContactForm);
+    }
+
+    // Command line
+    const commandInput = document.getElementById('command-input');
+    if (commandInput) {
+        commandInput.addEventListener('keyup', function(e) {
+            if (e.key === 'Enter') {
+                const command = this.value.trim().toLowerCase();
+                this.value = '';
+                if (command) {
+                    processCommand(command);
+                }
+            }
+        });
+    }
+}
 
 function startBootSequence() {
     const bootScreen = document.getElementById('boot-screen');
     const terminalBody = document.querySelector('.terminal-body');
     
-    // Boot messages
+    if (!bootScreen || !terminalBody) {
+        console.error('❌ Boot screen elements not found');
+        showDashboard();
+        return;
+    }
+    
     const bootMessages = [
         "> Initializing BadrOS v2.5...",
         "> Loading core modules...",
@@ -36,29 +92,33 @@ function startBootSequence() {
             messageElement.innerHTML = `<span class="terminal-prompt">${message}</span>`;
             
             terminalBody.appendChild(messageElement);
+            terminalBody.scrollTop = terminalBody.scrollHeight;
             
             messageIndex++;
-            setTimeout(displayNextMessage, 1000);
+            setTimeout(displayNextMessage, 800);
         } else {
-            // Add blinking cursor at the end
             const cursorElement = document.createElement('div');
             cursorElement.className = 'terminal-line';
             cursorElement.innerHTML = '<span class="terminal-prompt">></span><span class="typing-cursor"></span>';
             terminalBody.appendChild(cursorElement);
+            terminalBody.scrollTop = terminalBody.scrollHeight;
             
-            // Transition to dashboard after a delay
-            setTimeout(transitionToDashboard, 2000);
+            setTimeout(showDashboard, 2000);
         }
     }
     
     displayNextMessage();
 }
 
-function transitionToDashboard() {
+function showDashboard() {
     const bootScreen = document.getElementById('boot-screen');
     const dashboardScreen = document.getElementById('dashboard-screen');
     
-    // Fade out boot screen
+    if (!bootScreen || !dashboardScreen) {
+        console.error('❌ Screens not found');
+        return;
+    }
+    
     bootScreen.style.opacity = '0';
     bootScreen.style.transition = 'opacity 1s ease';
     
@@ -66,56 +126,30 @@ function transitionToDashboard() {
         bootScreen.classList.remove('active');
         dashboardScreen.classList.add('active');
         
-        // Fade in dashboard
-        setTimeout(function() {
-            dashboardScreen.style.opacity = '1';
-        }, 100);
+        const commandInput = document.getElementById('command-input');
+        if (commandInput) {
+            setTimeout(() => commandInput.focus(), 100);
+        }
+        
+        console.log('✅ Dashboard loaded successfully');
     }, 1000);
 }
 
-function initModules() {
-    // Module cards
-    const moduleCards = document.querySelectorAll('.module-card');
-    
-    moduleCards.forEach(card => {
-        card.addEventListener('click', function() {
-            const moduleId = this.getAttribute('data-module');
-            openModule(moduleId);
-        });
-        
-        // Add keyboard accessibility
-        card.setAttribute('tabindex', '0');
-        card.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter' || e.key === ' ') {
-                const moduleId = this.getAttribute('data-module');
-                openModule(moduleId);
-            }
-        });
-    });
-    
-    // Close module buttons
-    const closeButtons = document.querySelectorAll('.close-module');
-    
-    closeButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            closeAllModules();
-        });
-    });
-}
-
 function openModule(moduleId) {
-    // Close any open modules first
+    console.log(`📂 Opening module: ${moduleId}`);
+    
     closeAllModules();
     
-    // Show the selected module
     const moduleScreen = document.getElementById(`${moduleId}-module`);
     const dashboardScreen = document.getElementById('dashboard-screen');
     
-    if (moduleScreen) {
+    if (moduleScreen && dashboardScreen) {
         dashboardScreen.classList.remove('active');
         moduleScreen.classList.add('active');
         
-        // Add glitch effect to the module title
+        // Scroll to top of module
+        moduleScreen.scrollTop = 0;
+        
         const moduleTitle = moduleScreen.querySelector('.module-title-large');
         if (moduleTitle) {
             moduleTitle.classList.add('glitch-text');
@@ -124,22 +158,24 @@ function openModule(moduleId) {
             }, 500);
         }
         
-        // Special initialization for specific modules
-        if (moduleId === 'about') {
-            initAboutModule();
-        } else if (moduleId === 'skills') {
-            initSkillsModule();
-        } else if (moduleId === 'funzone') {
-            initFunZoneModule();
-        } else if (moduleId === 'projects') {
-            initProjectsModule();
-        } else if (moduleId === 'contact') {
-            initContactModule();
+        switch(moduleId) {
+            case 'about':
+                initAboutModule();
+                break;
+            case 'skills':
+                initSkillsModule();
+                break;
         }
+        
+        console.log(`✅ Module ${moduleId} opened successfully`);
+    } else {
+        console.error(`❌ Module screen not found: ${moduleId}`);
     }
 }
 
 function closeAllModules() {
+    console.log('📂 Closing all modules');
+    
     const moduleScreens = document.querySelectorAll('.module-screen');
     const dashboardScreen = document.getElementById('dashboard-screen');
     
@@ -147,251 +183,277 @@ function closeAllModules() {
         screen.classList.remove('active');
     });
     
-    dashboardScreen.classList.add('active');
+    if (dashboardScreen) {
+        dashboardScreen.classList.add('active');
+        dashboardScreen.scrollTop = 0;
+    }
 }
 
 function initAboutModule() {
-    // Animate the file lines one by one
-    const fileLines = document.querySelectorAll('.file-line');
+    console.log('👤 Initializing About module');
+    const fileLines = document.querySelectorAll('#about-module .file-line');
     
     fileLines.forEach((line, index) => {
+        line.style.opacity = '0';
         setTimeout(() => {
             line.style.opacity = '1';
-        }, 200 * index);
+        }, 150 * index);
     });
 }
 
 function initSkillsModule() {
-    // Add hover effects to skill nodes
+    console.log('🎯 Initializing Skills module');
     const skillNodes = document.querySelectorAll('.skill-node');
     
-    skillNodes.forEach(node => {
-        node.addEventListener('mouseenter', function() {
-            const skillName = this.querySelector('.skill-name').textContent;
-            const skillLevel = this.querySelector('.skill-level').textContent;
-            
-            // You could add a tooltip or other effect here
-        });
+    skillNodes.forEach((node, index) => {
+        node.style.opacity = '0';
+        node.style.transform = 'scale(0.5)';
+        setTimeout(() => {
+            node.style.transition = 'all 0.5s ease';
+            node.style.opacity = '1';
+            node.style.transform = 'scale(1)';
+        }, 100 * index);
     });
 }
 
-function initProjectsModule() {
-    // Add click handlers for project cards if needed
-    const projectCards = document.querySelectorAll('.project-card');
+function submitContactForm() {
+    console.log('📨 Submitting contact form');
     
-    projectCards.forEach(card => {
-        card.addEventListener('click', function(e) {
-            e.stopPropagation(); // Prevent bubbling to parent
-            const projectTitle = this.querySelector('.project-title').textContent;
-            // You could add project detail modal here
-            console.log(`Opening project: ${projectTitle}`);
-        });
-    });
-}
-
-function initFunZoneModule() {
-    // Easter egg functionality
-    const eggTrigger = document.querySelector('.egg-trigger');
-    let clickCount = 0;
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const subject = document.getElementById('subject').value.trim();
+    const message = document.getElementById('message').value.trim();
     
-    if (eggTrigger) {
-        eggTrigger.addEventListener('click', function() {
-            clickCount++;
-            
-            if (clickCount === 5) {
-                // Trigger easter egg
-                triggerEasterEgg();
-                clickCount = 0;
-            }
-        });
+    if (!name || !email || !message) {
+        showFormResponse('Please fill in all required fields.', 'error');
+        return;
     }
     
-    // Make joke cards interactive
-    const jokeCards = document.querySelectorAll('.joke-card');
-    jokeCards.forEach(card => {
-        card.addEventListener('click', function() {
-            this.classList.toggle('joke-revealed');
-        });
-    });
-}
-
-function initContactModule() {
-    // Add form submission handler
-    const contactForm = document.querySelector('.contact-form');
-    const submitBtn = document.querySelector('.submit-btn');
-    
-    if (submitBtn) {
-        submitBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            // Simple form validation
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const message = document.getElementById('message').value;
-            
-            if (name && email && message) {
-                // Show success message
-                showFormResponse('Transmission sent successfully! Badr will respond soon.', 'success');
-                
-                // Reset form
-                contactForm.reset();
-            } else {
-                showFormResponse('Please fill in all fields.', 'error');
-            }
-        });
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+        showFormResponse('Please enter a valid email address.', 'error');
+        return;
     }
+    
+    showFormResponse('Transmission sent successfully! Badr will respond soon.', 'success');
+    
+    document.getElementById('name').value = '';
+    document.getElementById('email').value = '';
+    document.getElementById('subject').value = '';
+    document.getElementById('message').value = '';
+    
+    console.log('✅ Contact form submitted successfully');
 }
 
 function showFormResponse(message, type) {
-    // Remove any existing response messages
-    const existingResponse = document.querySelector('.form-response');
-    if (existingResponse) {
-        existingResponse.remove();
+    const responseElement = document.getElementById('form-response');
+    if (responseElement) {
+        responseElement.textContent = message;
+        responseElement.className = `form-response ${type}`;
+        
+        setTimeout(() => {
+            responseElement.textContent = '';
+            responseElement.className = '';
+        }, 5000);
     }
-    
-    // Create new response message
-    const responseElement = document.createElement('div');
-    responseElement.className = `form-response ${type}`;
-    responseElement.textContent = message;
-    responseElement.style.marginTop = '1rem';
-    responseElement.style.padding = '0.8rem';
-    responseElement.style.borderRadius = '5px';
-    responseElement.style.textAlign = 'center';
-    responseElement.style.fontWeight = '600';
-    
-    if (type === 'success') {
-        responseElement.style.background = 'rgba(0, 255, 65, 0.2)';
-        responseElement.style.border = '1px solid var(--terminal-green)';
-        responseElement.style.color = 'var(--terminal-green)';
-    } else {
-        responseElement.style.background = 'rgba(255, 65, 65, 0.2)';
-        responseElement.style.border = '1px solid #ff4141';
-        responseElement.style.color = '#ff4141';
-    }
-    
-    const contactForm = document.querySelector('.contact-form');
-    contactForm.appendChild(responseElement);
-    
-    // Auto remove after 5 seconds
-    setTimeout(() => {
-        responseElement.remove();
-    }, 5000);
 }
 
 function triggerEasterEgg() {
-    // Create a fun easter egg effect
-    const funZone = document.getElementById('funzone-module');
-    const glitchEffect = document.createElement('div');
+    easterEggCount++;
+    console.log(`🥚 Easter egg click: ${easterEggCount}`);
     
-    glitchEffect.style.position = 'fixed';
-    glitchEffect.style.top = '0';
-    glitchEffect.style.left = '0';
-    glitchEffect.style.width = '100%';
-    glitchEffect.style.height = '100%';
-    glitchEffect.style.background = 'linear-gradient(45deg, #ff00ff, #00ffff)';
-    glitchEffect.style.opacity = '0.7';
-    glitchEffect.style.zIndex = '9999';
-    glitchEffect.style.pointerEvents = 'none';
-    glitchEffect.style.animation = 'glitch 0.2s infinite';
-    
-    document.body.appendChild(glitchEffect);
-    
-    // Add a funny message
-    const message = document.createElement('div');
-    message.style.position = 'fixed';
-    message.style.top = '50%';
-    message.style.left = '50%';
-    message.style.transform = 'translate(-50%, -50%)';
-    message.style.background = 'rgba(0, 0, 0, 0.8)';
-    message.style.color = '#00ff41';
-    message.style.padding = '2rem';
-    message.style.border = '2px solid #00ff41';
-    message.style.borderRadius = '8px';
-    message.style.zIndex = '10000';
-    message.style.fontSize = '1.5rem';
-    message.style.fontWeight = 'bold';
-    message.style.textAlign = 'center';
-    message.textContent = 'Easter Egg Found!\n\n"Debugging is like being a detective in a crime movie where you are also the murderer."';
-    
-    document.body.appendChild(message);
-    
-    // Remove effects after a few seconds
-    setTimeout(() => {
-        document.body.removeChild(glitchEffect);
-        document.body.removeChild(message);
-    }, 3000);
-}
-
-function initCommandLine() {
-    const commandInput = document.querySelector('.command-input');
-    
-    if (commandInput) {
-        commandInput.addEventListener('keyup', function(e) {
-            if (e.key === 'Enter') {
-                const command = this.value.trim().toLowerCase();
-                this.value = '';
-                
-                processCommand(command);
+    if (easterEggCount >= 5) {
+        console.log('🎉 Easter egg triggered!');
+        
+        const glitchEffect = document.createElement('div');
+        glitchEffect.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #ff00ff, #00ffff);
+            opacity: 0.7;
+            z-index: 9999;
+            pointer-events: none;
+            animation: glitch 0.2s infinite;
+        `;
+        document.body.appendChild(glitchEffect);
+        
+        const message = document.createElement('div');
+        message.style.cssText = `
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.95);
+            color: #00ff41;
+            padding: 2rem;
+            border: 2px solid #00ff41;
+            border-radius: 8px;
+            z-index: 10000;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-align: center;
+            white-space: pre-line;
+            max-width: 90%;
+            box-shadow: 0 0 30px #00ff41;
+            font-family: 'JetBrains Mono', monospace;
+        `;
+        message.textContent = '🎉 Easter Egg Found! 🎉\n\n"Debugging is like being a detective\nin a crime movie where you are\nalso the murderer."\n\n- Badr, probably';
+        document.body.appendChild(message);
+        
+        easterEggCount = 0;
+        
+        setTimeout(() => {
+            if (glitchEffect.parentNode) {
+                document.body.removeChild(glitchEffect);
             }
-        });
+            if (message.parentNode) {
+                document.body.removeChild(message);
+            }
+        }, 4000);
     }
 }
 
 function processCommand(command) {
-    // Simple command processing
+    console.log(`⌨️ Processing command: ${command}`);
+    
     const commands = {
         'about': 'about',
         'projects': 'projects',
         'skills': 'skills',
         'fun': 'funzone',
+        'funzone': 'funzone',
         'contact': 'contact',
         'help': 'help',
         'clear': 'clear',
-        'exit': 'exit'
+        'exit': 'exit',
+        'home': 'exit'
     };
     
     if (commands[command]) {
-        if (command === 'help') {
-            showCommandHelp();
-        } else if (command === 'clear') {
-            // Clear command line - in a real terminal we'd clear the history
-            // For this demo, we'll just show a message
-            addCommandResponse('Command history cleared.');
-        } else if (command === 'exit') {
-            closeAllModules();
-        } else {
-            openModule(commands[command]);
+        switch(command) {
+            case 'help':
+                showCommandHelp();
+                break;
+            case 'clear':
+                clearCommandHistory();
+                break;
+            case 'exit':
+            case 'home':
+                closeAllModules();
+                addCommandResponse('Returning to dashboard...');
+                break;
+            default:
+                openModule(commands[command]);
+                addCommandResponse(`Opening ${command} module...`);
         }
-    } else {
-        addCommandResponse(`Command not found: ${command}. Type "help" for available commands.`);
+    } else if (command) {
+        addCommandResponse(`Command not found: "${command}". Type "help" for available commands.`);
     }
 }
 
 function showCommandHelp() {
-    const helpText = `
-Available commands:
-- about: Open About module
-- projects: Open Projects module
-- skills: Open Skills module
-- fun: Open Fun Zone module
-- contact: Open Contact module
-- help: Show this help
-- clear: Clear command history
-- exit: Return to dashboard
-    `;
+    const helpText = `Available commands:
+• about     - Open About module
+• projects  - Open Projects module  
+• skills    - Open Skills module
+• fun       - Open Fun Zone module
+• contact   - Open Contact module
+• help      - Show this help
+• clear     - Clear command history
+• exit/home - Return to dashboard`;
     
     addCommandResponse(helpText);
 }
 
-function addCommandResponse(text) {
-    const commandLine = document.querySelector('.command-line');
-    const responseElement = document.createElement('div');
-    responseElement.className = 'terminal-line';
-    responseElement.style.marginTop = '0.5rem';
-    responseElement.innerHTML = `<span class="terminal-prompt">${text}</span>`;
-    
-    commandLine.parentNode.insertBefore(responseElement, commandLine);
-    
-    // Scroll to bottom
-    responseElement.scrollIntoView({ behavior: 'smooth' });
+function clearCommandHistory() {
+    const responses = document.querySelectorAll('.command-response');
+    responses.forEach(response => {
+        response.remove();
+    });
+    addCommandResponse('Command history cleared.');
 }
+
+function addCommandResponse(text) {
+    const dashboardScreen = document.getElementById('dashboard-screen');
+    const commandLine = document.querySelector('.command-line');
+    
+    if (dashboardScreen && commandLine) {
+        const responseElement = document.createElement('div');
+        responseElement.className = 'command-response';
+        responseElement.style.cssText = `
+            margin-bottom: 1rem;
+            color: var(--terminal-green);
+            font-family: 'JetBrains Mono', monospace;
+            white-space: pre-line;
+            padding: 0.5rem;
+            background: rgba(0, 0, 0, 0.5);
+            border-left: 2px solid var(--terminal-green);
+            padding-left: 1rem;
+        `;
+        responseElement.textContent = text;
+        
+        const screenContent = dashboardScreen.querySelector('.screen-content');
+        if (screenContent) {
+            screenContent.insertBefore(responseElement, commandLine);
+            
+            // Scroll to the response
+            responseElement.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+    }
+}
+
+// Prevent body scroll when modules are open
+function preventBodyScroll() {
+    const activeModules = document.querySelectorAll('.module-screen.active');
+    if (activeModules.length > 0) {
+        document.body.style.overflow = 'hidden';
+    } else {
+        document.body.style.overflow = 'auto';
+    }
+}
+
+// Add scroll prevention observer
+const observer = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) {
+        if (mutation.attributeName === 'class') {
+            preventBodyScroll();
+        }
+    });
+});
+
+// Observe all screens for class changes
+document.addEventListener('DOMContentLoaded', function() {
+    const screens = document.querySelectorAll('.screen, .module-screen');
+    screens.forEach(screen => {
+        observer.observe(screen, { attributes: true });
+    });
+});
+
+// Global error handling
+window.addEventListener('error', function(e) {
+    console.error('❌ Global error:', e.error);
+});
+
+// Prevent default touch behaviors that might interfere with scrolling
+document.addEventListener('touchmove', function(e) {
+    // Allow scrolling on scrollable elements
+    let node = e.target;
+    while (node) {
+        if (node.classList && (node.classList.contains('screen') || 
+            node.classList.contains('module-screen') ||
+            node.classList.contains('terminal-body'))) {
+            return;
+        }
+        node = node.parentNode;
+    }
+}, { passive: true });
+
+// Add smooth scroll behavior
+document.querySelectorAll('.screen, .module-screen').forEach(screen => {
+    screen.style.scrollBehavior = 'smooth';
+});
+
+console.log('✅ BadrOS v2.5 JavaScript loaded successfully');
