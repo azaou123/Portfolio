@@ -943,41 +943,46 @@
 
         <!-- Contact Module -->
         <div id="contact-module" class="module-screen">
-            <div class="screen-content">
-                <div class="module-header">
-                    <div class="module-title-large">Contact</div>
-                    <div class="close-module">
-                        <i class="fas fa-times"></i>
-                    </div>
-                </div>
-
-                <div class="contact-form">
-                    <div class="form-group">
-                        <label class="form-label" for="name">Your Name</label>
-                        <input type="text" class="form-input" id="name" placeholder="Enter your name">
-                    </div>
-
-                    <div class="form-group">
-                        <label class="form-label" for="email">Your Email</label>
-                        <input type="email" class="form-input" id="email" placeholder="Enter your email">
-                    </div>
-
-                    <div class="form-group">
-                        <label class="form-label" for="subject">Subject</label>
-                        <input type="text" class="form-input" id="subject" placeholder="What's this about?">
-                    </div>
-
-                    <div class="form-group">
-                        <label class="form-label" for="message">Message</label>
-                        <textarea class="form-textarea" id="message" placeholder="Type your message here..."
-                            rows="6"></textarea>
-                    </div>
-
-                    <button class="submit-btn">Send Transmission</button>
-                    <div id="form-response"></div>
-                </div>
+    <div class="screen-content">
+        <div class="module-header">
+            <div class="module-title-large">Contact</div>
+            <div class="close-module">
+                <i class="fas fa-times"></i>
             </div>
         </div>
+
+        <div class="contact-form">
+            <div class="form-group">
+                <label class="form-label" for="name">Your Name</label>
+                <input type="text" class="form-input" id="name" placeholder="Enter your name" required>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="email">Your Email</label>
+                <input type="email" class="form-input" id="email" placeholder="Enter your email" required>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="subject">Subject</label>
+                <input type="text" class="form-input" id="subject" placeholder="What's this about?">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="message">Message</label>
+                <textarea class="form-textarea" id="message" placeholder="Type your message here..." rows="6" required></textarea>
+            </div>
+
+            <button class="submit-btn" onclick="submitContactForm()">
+                <span class="btn-text">Send Transmission</span>
+                <span class="btn-loader" style="display: none;">
+                    <i class="fas fa-spinner fa-spin"></i> Sending...
+                </span>
+            </button>
+            <div id="form-response"></div>
+        </div>
+    </div>
+</div>
+        <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     </div>
 
     <!-- Custom JS -->

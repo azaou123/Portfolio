@@ -216,35 +216,98 @@ function initSkillsModule() {
     });
 }
 
-function submitContactForm() {
-    console.log('📨 Submitting contact form');
-    
-    const name = document.getElementById('name').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const subject = document.getElementById('subject').value.trim();
-    const message = document.getElementById('message').value.trim();
-    
-    if (!name || !email || !message) {
-        showFormResponse('Please fill in all required fields.', 'error');
-        return;
-    }
-    
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-        showFormResponse('Please enter a valid email address.', 'error');
-        return;
-    }
-    
-    showFormResponse('Transmission sent successfully! Badr will respond soon.', 'success');
-    
-    document.getElementById('name').value = '';
-    document.getElementById('email').value = '';
-    document.getElementById('subject').value = '';
-    document.getElementById('message').value = '';
-    
-    console.log('✅ Contact form submitted successfully');
-}
+(function() {
+        emailjs.init("Wt7FLPsGkNDXnhf30"); // ← Replace with your actual public key
+    })();
 
+    function submitContactForm() {
+        console.log('📨 Submitting contact form...');
+        
+        const btn = document.querySelector('.submit-btn');
+        const btnText = btn.querySelector('.btn-text');
+        const btnLoader = btn.querySelector('.btn-loader');
+        
+        // Get form values
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const subject = document.getElementById('subject').value.trim();
+        const message = document.getElementById('message').value.trim();
+        
+        // Validation
+        if (!name || !email || !message) {
+            showFormResponse('Please fill in all required fields.', 'error');
+            return;
+        }
+        
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            showFormResponse('Please enter a valid email address.', 'error');
+            return;
+        }
+        
+        // Show loading state
+        btnText.style.display = 'none';
+        btnLoader.style.display = 'inline-block';
+        btn.disabled = true;
+        
+        // Prepare template parameters
+        const templateParams = {
+            from_name: name,
+            from_email: email,
+            subject: subject || 'No subject',
+            message: message,
+            to_name: 'Badr',
+            reply_to: email,
+            date: new Date().toLocaleString()
+        };
+        
+        // Send email using EmailJS
+        emailjs.send(
+            'service_pabu0ob',      // ← Replace with your EmailJS service ID
+            'template_z80aicg',     // ← Replace with your EmailJS template ID
+            templateParams
+        )
+        .then(function(response) {
+            console.log('✅ Email sent successfully!', response.status, response.text);
+            showFormResponse('Transmission sent successfully! Badr will respond soon.', 'success');
+            
+            // Reset form
+            document.getElementById('name').value = '';
+            document.getElementById('email').value = '';
+            document.getElementById('subject').value = '';
+            document.getElementById('message').value = '';
+            
+            // Reset button
+            setTimeout(() => {
+                btnText.style.display = 'inline-block';
+                btnLoader.style.display = 'none';
+                btn.disabled = false;
+            }, 1500);
+            
+        }, function(error) {
+            console.error('❌ Email sending failed:', error);
+            showFormResponse('Transmission failed. Please try again or contact azaoubadr@gmail.com', 'error');
+            
+            // Reset button
+            btnText.style.display = 'inline-block';
+            btnLoader.style.display = 'none';
+            btn.disabled = false;
+        });
+    }
+    
+    function showFormResponse(message, type) {
+        const responseDiv = document.getElementById('form-response');
+        responseDiv.textContent = message;
+        responseDiv.className = 'form-response';
+        responseDiv.classList.add(type);
+        
+        // Auto-hide success messages after 5 seconds
+        if (type === 'success') {
+            setTimeout(() => {
+                responseDiv.classList.remove('show');
+            }, 5000);
+        }
+    }
 function showFormResponse(message, type) {
     const responseElement = document.getElementById('form-response');
     if (responseElement) {
